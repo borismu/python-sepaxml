@@ -93,6 +93,16 @@ class SepaTransfer(SepaPaymentInitn):
                 del PmtInf_nodes['ReqdExctnDtNode']
 
             PmtInf_nodes['Nm_Dbtr_Node'].text = self._config['name']
+            if 'zip' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("PstCd",text=self._config['zip']))
+            if 'country_code' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("Ctry",text=self._config['country_code']))
+            if 'city' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("TwnNm",text=self._config['city']))
+            if 'street' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("StrtNm",text=self._config['street']))
+            if 'building_number' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("StrtNm",text=self._config['building_number']))
             PmtInf_nodes['IBAN_DbtrAcct_Node'].text = self._config['IBAN']
             if 'BIC' in self._config:
                 PmtInf_nodes['BIC_DbtrAgt_Node'].text = self._config['BIC']
@@ -111,6 +121,16 @@ class SepaTransfer(SepaPaymentInitn):
         if bic:
             TX_nodes['BIC_CdtrAgt_Node'].text = payment['BIC']
         TX_nodes['Nm_Cdtr_Node'].text = payment['name']
+        if 'zip' in payment:
+            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("PstCd",text=payment['zip']))
+        if 'country_code' in payment:
+            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("Ctry",text=payment['country_code']))
+        if 'city' in payment:
+            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("TwnNm",text=payment['city']))
+        if 'street' in payment:
+            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("StrtNm",text=payment['street']))
+        if 'building_number' in payment:
+            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("StrtNm",text=payment['building_number']))
         TX_nodes['IBAN_CdtrAcct_Node'].text = payment['IBAN']
         TX_nodes['UstrdNode'].text = payment['description']
 
@@ -170,6 +190,7 @@ class SepaTransfer(SepaPaymentInitn):
 
         ED['DbtrNode'] = ET.Element("Dbtr")
         ED['Nm_Dbtr_Node'] = ET.Element("Nm")
+        ED['PstlAdr_Dbtr_Node'] = ET.Element("PstlAdr")
         ED['DbtrAcctNode'] = ET.Element("DbtrAcct")
         ED['Id_DbtrAcct_Node'] = ET.Element("Id")
         ED['IBAN_DbtrAcct_Node'] = ET.Element("IBAN")
@@ -193,6 +214,7 @@ class SepaTransfer(SepaPaymentInitn):
         ED['InstdAmtNode'] = ET.Element("InstdAmt")
         ED['CdtrNode'] = ET.Element("Cdtr")
         ED['Nm_Cdtr_Node'] = ET.Element("Nm")
+        ED['PstlAdr_Cdtr_Node'] = ET.Element("PstlAdr")
         ED['CdtrAgtNode'] = ET.Element("CdtrAgt")
         ED['FinInstnId_CdtrAgt_Node'] = ET.Element("FinInstnId")
         if bic:
@@ -222,6 +244,8 @@ class SepaTransfer(SepaPaymentInitn):
             PmtInf_nodes['PmtInfNode'].append(PmtInf_nodes['ReqdExctnDtNode'])
 
         PmtInf_nodes['DbtrNode'].append(PmtInf_nodes['Nm_Dbtr_Node'])
+        if len(PmtInf_nodes['PstlAdr_Dbtr_Node']) != 0:
+            PmtInf_nodes['DbtrNode'].append(PmtInf_nodes['PstlAdr_Dbtr_Node'])
         PmtInf_nodes['PmtInfNode'].append(PmtInf_nodes['DbtrNode'])
 
         PmtInf_nodes['Id_DbtrAcct_Node'].append(PmtInf_nodes['IBAN_DbtrAcct_Node'])
@@ -247,6 +271,8 @@ class SepaTransfer(SepaPaymentInitn):
             TX_nodes['CdtTrfTxInfNode'].append(TX_nodes['CdtrAgtNode'])
 
         TX_nodes['CdtrNode'].append(TX_nodes['Nm_Cdtr_Node'])
+        if len(TX_nodes['PstlAdr_Cdtr_Node']) != 0:
+            TX_nodes['CdtrNode'].append(TX_nodes['PstlAdr_Cdtr_Node'])
         TX_nodes['CdtTrfTxInfNode'].append(TX_nodes['CdtrNode'])
 
         TX_nodes['Id_CdtrAcct_Node'].append(TX_nodes['IBAN_CdtrAcct_Node'])
@@ -277,6 +303,8 @@ class SepaTransfer(SepaPaymentInitn):
             TX_nodes['CdtTrfTxInfNode'].append(TX_nodes['CdtrAgtNode'])
 
         TX_nodes['CdtrNode'].append(TX_nodes['Nm_Cdtr_Node'])
+        if len(TX_nodes['PstlAdr_Cdtr_Node']) != 0:
+            TX_nodes['CdtrNode'].append(TX_nodes['PstlAdr_Cdtr_Node'])
         TX_nodes['CdtTrfTxInfNode'].append(TX_nodes['CdtrNode'])
 
         TX_nodes['Id_CdtrAcct_Node'].append(TX_nodes['IBAN_CdtrAcct_Node'])
@@ -326,6 +354,16 @@ class SepaTransfer(SepaPaymentInitn):
             else:
                 del PmtInf_nodes['ReqdExctnDtNode']
             PmtInf_nodes['Nm_Dbtr_Node'].text = self._config['name']
+            if 'zip' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("PstCd",text=self._config['zip']))
+            if 'country_code' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("Ctry",text=self._config['country_code']))
+            if 'city' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("TwnNm",text=self._config['city']))
+            if 'street' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("StrtNm",text=self._config['street']))
+            if 'building_number' in self._config:
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("StrtNm",text=self._config['building_number']))
             PmtInf_nodes['IBAN_DbtrAcct_Node'].text = self._config['IBAN']
 
             if 'BIC' in self._config:
@@ -349,6 +387,8 @@ class SepaTransfer(SepaPaymentInitn):
                 PmtInf_nodes['PmtInfNode'].append(PmtInf_nodes['ReqdExctnDtNode'])
 
             PmtInf_nodes['DbtrNode'].append(PmtInf_nodes['Nm_Dbtr_Node'])
+            if len(PmtInf_nodes['PstlAdr_Dbtr_Node']) != 0:
+                PmtInf_nodes['DbtrNode'].append(PmtInf_nodes['PstlAdr_Dbtr_Node'])
             PmtInf_nodes['PmtInfNode'].append(PmtInf_nodes['DbtrNode'])
 
             PmtInf_nodes['Id_DbtrAcct_Node'].append(PmtInf_nodes['IBAN_DbtrAcct_Node'])
