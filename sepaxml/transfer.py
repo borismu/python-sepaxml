@@ -94,15 +94,25 @@ class SepaTransfer(SepaPaymentInitn):
 
             PmtInf_nodes['Nm_Dbtr_Node'].text = self._config['name']
             if 'zip' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("PstCd",text=self._config['zip']))
+                zip_node = ET.Element("PstCd")
+                zip_node.text = self._config['zip']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(zip_node)
             if 'country_code' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("Ctry",text=self._config['country_code']))
+                country_node = ET.Element("Ctry")
+                country_node.text = self._config['country_code']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(country_node)
             if 'city' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("TwnNm",text=self._config['city']))
+                city_node = ET.Element("TwnNm")
+                city_node.text = self._config['city']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(city_node)
             if 'street' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("StrtNm",text=self._config['street']))
+                street_node = ET.Element("StrtNm")
+                street_node.text = self._config['street']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(street_node)
             if 'building_number' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("StrtNm",text=self._config['building_number']))
+                building_node = ET.Element("BldgNb")
+                building_node.text = self._config['building_number']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(building_node)
             PmtInf_nodes['IBAN_DbtrAcct_Node'].text = self._config['IBAN']
             if 'BIC' in self._config:
                 PmtInf_nodes['BIC_DbtrAgt_Node'].text = self._config['BIC']
@@ -122,15 +132,25 @@ class SepaTransfer(SepaPaymentInitn):
             TX_nodes['BIC_CdtrAgt_Node'].text = payment['BIC']
         TX_nodes['Nm_Cdtr_Node'].text = payment['name']
         if 'zip' in payment:
-            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("PstCd",text=payment['zip']))
+            zip_node = ET.Element("PstCd")
+            zip_node.text = payment['zip']
+            TX_nodes['PstlAdr_Cdtr_Node'].append(zip_node)
         if 'country_code' in payment:
-            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("Ctry",text=payment['country_code']))
+            country_node = ET.Element("Ctry")
+            country_node.text = payment['country_code']
+            TX_nodes['PstlAdr_Cdtr_Node'].append(country_node)
         if 'city' in payment:
-            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("TwnNm",text=payment['city']))
+            city_node = ET.Element("TwnNm")
+            city_node.text = payment['city']
+            TX_nodes['PstlAdr_Cdtr_Node'].append(city_node)
         if 'street' in payment:
-            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("StrtNm",text=payment['street']))
+            street_node = ET.Element("StrtNm")
+            street_node.text = payment['street']
+            TX_nodes['PstlAdr_Cdtr_Node'].append(street_node)
         if 'building_number' in payment:
-            TX_nodes['PstlAdr_Cdtr_Node'].append(ET.Element("StrtNm",text=payment['building_number']))
+            building_node = ET.Element("BldgNb")
+            building_node.text = payment['building_number']
+            TX_nodes['PstlAdr_Cdtr_Node'].append(building_node)
         TX_nodes['IBAN_CdtrAcct_Node'].text = payment['IBAN']
         TX_nodes['UstrdNode'].text = payment['description']
 
@@ -355,15 +375,25 @@ class SepaTransfer(SepaPaymentInitn):
                 del PmtInf_nodes['ReqdExctnDtNode']
             PmtInf_nodes['Nm_Dbtr_Node'].text = self._config['name']
             if 'zip' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("PstCd",text=self._config['zip']))
+                zip_node = ET.Element("PstCd")
+                zip_node.text = self._config['zip']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(zip_node)
             if 'country_code' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("Ctry",text=self._config['country_code']))
+                country_node = ET.Element("Ctry")
+                country_node.text = self._config['country_code']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(country_node)
             if 'city' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("TwnNm",text=self._config['city']))
+                city_node = ET.Element("TwnNm")
+                city_node.text = self._config['city']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(city_node)
             if 'street' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("StrtNm",text=self._config['street']))
+                street_node = ET.Element("StrtNm")
+                street_node.text = self._config['street']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(street_node)
             if 'building_number' in self._config:
-                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(ET.Element("StrtNm",text=self._config['building_number']))
+                building_node = ET.Element("BldgNb")
+                building_node.text = self._config['building_number']
+                PmtInf_nodes['PstlAdr_Dbtr_Node'].append(building_node)
             PmtInf_nodes['IBAN_DbtrAcct_Node'].text = self._config['IBAN']
 
             if 'BIC' in self._config:
