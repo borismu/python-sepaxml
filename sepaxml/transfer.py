@@ -113,6 +113,11 @@ class SepaTransfer(SepaPaymentInitn):
                 country_node = ET.Element("Ctry")
                 country_node.text = self._config['country_code']
                 PmtInf_nodes['PstlAdr_Dbtr_Node'].append(country_node)
+            if 'address_lines' in self._config:
+                for address_line in self._config['address_lines']:
+                    address_line_node = ET.Element("AdrLine")
+                    address_line_node.text = address_line
+                    PmtInf_nodes['PstlAdr_Dbtr_Node'].append(address_line_node)
             PmtInf_nodes['IBAN_DbtrAcct_Node'].text = self._config['IBAN']
             if 'BIC' in self._config:
                 PmtInf_nodes['BIC_DbtrAgt_Node'].text = self._config['BIC']
@@ -151,6 +156,11 @@ class SepaTransfer(SepaPaymentInitn):
             country_node = ET.Element("Ctry")
             country_node.text = payment['country_code']
             TX_nodes['PstlAdr_Cdtr_Node'].append(country_node)
+        if 'address_lines' in payment:
+            for address_line in payment['address_lines']:
+                address_line_node = ET.Element("AdrLine")
+                address_line_node.text = address_line
+                TX_nodes['PstlAdr_Cdtr_Node'].append(address_line_node)
         TX_nodes['IBAN_CdtrAcct_Node'].text = payment['IBAN']
         TX_nodes['UstrdNode'].text = payment['description']
 
@@ -394,6 +404,11 @@ class SepaTransfer(SepaPaymentInitn):
                 country_node = ET.Element("Ctry")
                 country_node.text = self._config['country_code']
                 PmtInf_nodes['PstlAdr_Dbtr_Node'].append(country_node)
+            if 'address_lines' in self._config:
+                for address_line in self._config['address_lines']:
+                    address_line_node = ET.Element("AdrLine")
+                    address_line_node.text = address_line
+                    PmtInf_nodes['PstlAdr_Dbtr_Node'].append(address_line_node)
             PmtInf_nodes['IBAN_DbtrAcct_Node'].text = self._config['IBAN']
 
             if 'BIC' in self._config:
